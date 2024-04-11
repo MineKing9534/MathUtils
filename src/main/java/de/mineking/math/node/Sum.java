@@ -100,7 +100,7 @@ public class Sum implements Node {
 				break;
 			}
 
-			return create(nodes);
+			return create(nodes.stream().map(n -> n.apply(environment)).toList());
 		}
 
 		return temp.apply(environment);
