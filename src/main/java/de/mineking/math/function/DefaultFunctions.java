@@ -28,6 +28,8 @@ public class DefaultFunctions {
 				(p1, p2) -> Math.log(p2) / Math.log(p1),
 				(environment, p1, p2) -> {
 					if (p1.equals(p2)) return Constant.ONE;
+					if (p2.equals(Constant.ONE)) return Constant.ZERO;
+
 					else if (p2 instanceof Exponent e) {
 						if (p1.equals(e.getBase())) return e.getExponent();
 						return Product.create(e.getExponent(), BinaryFunctionCall.create(log, p1, e.getBase()));
@@ -46,6 +48,8 @@ public class DefaultFunctions {
 		ln = UnaryFunction.create("ln", Math::log,
 				(environment, param) -> {
 					if (param.equals(Constant.E)) return Constant.ONE;
+					if (param.equals(Constant.ONE)) return Constant.ZERO;
+
 					if (param instanceof Exponent e) {
 						if (e.getBase().equals(Constant.E)) return e.getExponent();
 						return Product.create(e.getExponent(), UnaryFunctionCall.create(ln, e.getBase()));
