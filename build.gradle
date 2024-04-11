@@ -43,7 +43,7 @@ publishing {
     publications {
         maven(MavenPublication) {
             groupId = "de.mineking"
-            artifactId = "JavaUtils"
+            artifactId = "MathUtils"
             version = release ? this.version : commit
 
             from components.java
